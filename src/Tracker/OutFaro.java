@@ -5,10 +5,19 @@ import java.util.ArrayList;
 
 public class OutFaro {
     private ArrayList<String> oneShuffle;
+    private ArrayList<String> twoShuffles;
 
 
-    public ArrayList<String> OutFaro(String[] suitesFirstHalf, String[] valuesFirstHalf,
-                                     String[] suitesSecondHalf, String[] valuesSecondHalf) {
+    public ArrayList<String> getOneShuffle() {
+        return oneShuffle;
+    }
+
+    public void setOneShuffle(ArrayList<String> oneShuffle) {
+        this.oneShuffle = oneShuffle;
+    }
+
+    public ArrayList<String> firstShuffle(String[] suitesFirstHalf, String[] valuesFirstHalf,
+                                          String[] suitesSecondHalf, String[] valuesSecondHalf) {
 
         ArrayList<String> first26 = new ArrayList<>();
 
@@ -29,8 +38,8 @@ public class OutFaro {
         // One Shuffle
         oneShuffle = new ArrayList<>();
 
-        for (int i = 0; i < first26.size() - 1; i++) {
-            for (int j = 0; j < last26.size() - 1; j++) {
+        for (int i = 0; i < first26.size(); i++) {
+            for (int j = 0; j < last26.size(); j++) {
                 oneShuffle.add(first26.get(i));
                 oneShuffle.add(last26.get(j));
                 i++;
@@ -41,9 +50,46 @@ public class OutFaro {
         return oneShuffle;
     }
 
+    public ArrayList<String> getTwoShuffles() {
+        return twoShuffles;
+    }
+
+    public void setTwoShuffles(ArrayList<String> twoShuffles) {
+        this.twoShuffles = twoShuffles;
+    }
+
+    public ArrayList<String> secondShuffle(ArrayList<String> firstShuffleResults) {
+
+        ArrayList<String> first26SecondShuffle = new ArrayList<>();
+        ArrayList<String> last26SecondShuffle = new ArrayList<>();
+
+        for(int i = 0; i < firstShuffleResults.size() - 26; i++) {
+            first26SecondShuffle.add(firstShuffleResults.get(i));
+        }
+
+        for(int j = 27; j < firstShuffleResults.size(); j++) {
+            last26SecondShuffle.add(firstShuffleResults.get(j));
+        }
+
+        // Second Shuffle
+        twoShuffles = new ArrayList<>();
+
+        for (int i = 0; i < first26SecondShuffle.size() - 1; i++) {
+            for (int j = 0; j < last26SecondShuffle.size() - 1; j++) {
+                twoShuffles.add(first26SecondShuffle.get(i));
+                twoShuffles.add(last26SecondShuffle.get(j));
+                i++;
+
+            }
+        }
+
+        return twoShuffles;
+
+    }
+
     @Override
     public String toString() {
-        return "OutFaro{" +
+        return "firstShuffle{" +
                 "oneShuffle=" + oneShuffle +
                 '}';
     }

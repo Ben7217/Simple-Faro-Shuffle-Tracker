@@ -38,16 +38,30 @@ public class Main {
         String[] secondHalfSuites = new String[]{"Diamonds", "Spades"};
         String[] secondHalfValues = new String[]{"King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace"};
 
-        System.out.println("First shuffle results: " + outFaro.OutFaro(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
+        System.out.println("First shuffle results: " + outFaro.firstShuffle(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
+        outFaro.setOneShuffle(outFaro.firstShuffle(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
+        outFaro.setTwoShuffles(outFaro.secondShuffle(outFaro.getOneShuffle()));
+
 
         int cardAfterOneShuffle = 0;
-        if (outFaro.OutFaro(firstHalfSuites, firstHalfValues,
-                secondHalfSuites, secondHalfValues).contains(cardToTrack)) {
-            cardAfterOneShuffle += outFaro.OutFaro(firstHalfSuites, firstHalfValues,
+        if (outFaro.getOneShuffle().contains(cardToTrack)) {
+            cardAfterOneShuffle += outFaro.firstShuffle(firstHalfSuites, firstHalfValues,
                     secondHalfSuites, secondHalfValues).indexOf(cardToTrack) + 1;
 
         }
         System.out.println("After one shuffle, your card is at number " + cardAfterOneShuffle);
+
+        int cardAfterTwoShuffles = 0;
+
+        System.out.println("Second shuffle results: " + outFaro.getTwoShuffles());
+
+        if (outFaro.getTwoShuffles().contains(cardToTrack)) {
+            cardAfterTwoShuffles += outFaro.getTwoShuffles().indexOf(cardToTrack) + 1;
+
+        }
+
+        System.out.println("After two shuffles, your card is at number " + cardAfterTwoShuffles);
+
 
     }
 
