@@ -4,25 +4,13 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class OutFaro {
-    ArrayList<String> first26;
-    ArrayList<String> last26;
-    ArrayList<String> oneShuffle;
-    String[] suitesFirstHalf;
-    String[] valuesFirstHalf;
-    String[] suitesSecondHalf;
-    String[] valuesSecondHalf;
+    private ArrayList<String> oneShuffle;
 
 
     public ArrayList<String> OutFaro(String[] suitesFirstHalf, String[] valuesFirstHalf,
                                      String[] suitesSecondHalf, String[] valuesSecondHalf) {
 
-        this.suitesFirstHalf = suitesFirstHalf;
-        this.valuesFirstHalf = valuesFirstHalf;
-        this.suitesSecondHalf = suitesSecondHalf;
-        this.valuesSecondHalf = valuesSecondHalf;
-
-
-        first26 = new ArrayList<>();
+        ArrayList<String> first26 = new ArrayList<>();
 
         for (String deckFirstSuites : suitesFirstHalf) {
             for (String deckFirstValues : valuesFirstHalf) {
@@ -30,7 +18,7 @@ public class OutFaro {
             }
         }
 
-        last26 = new ArrayList<>();
+        ArrayList<String> last26 = new ArrayList<>();
 
         for (String deckSecondSuites : suitesSecondHalf) {
             for (String deckSecondValues : valuesSecondHalf) {

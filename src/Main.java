@@ -24,7 +24,7 @@ public class Main {
 
         int cardsPosition = 0;
         ArrayList<String> temp = deckOrder.getList();
-        if(temp.contains(cardToTrack)) {
+        if (temp.contains(cardToTrack)) {
             cardsPosition += temp.indexOf(cardToTrack) + 1;
         }
         System.out.println("\n" + cardToTrack + " starting position is " + cardsPosition + ".");
@@ -50,11 +50,6 @@ public class Main {
         System.out.println("After one shuffle, your card is at number " + cardAfterOneShuffle);
 
     }
-
-
-
-
-
 
 
 }
