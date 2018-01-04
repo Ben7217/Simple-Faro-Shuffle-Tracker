@@ -28,7 +28,7 @@ public class Main {
             cardsPosition += temp.indexOf(cardToTrack) + 1;
         }
         System.out.println("\n" + cardToTrack + " starting position is " + cardsPosition + ".");
-        System.out.println("\nPerforming one out faro.");
+        System.out.println("\n" + "Performing one out faro.");
 
         OutFaro outFaro = new OutFaro();
 
@@ -38,8 +38,10 @@ public class Main {
         String[] secondHalfSuites = new String[]{"Diamonds", "Spades"};
         String[] secondHalfValues = new String[]{"King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace"};
 
-        System.out.println("First shuffle results: " + outFaro.firstShuffle(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
         outFaro.setOneShuffle(outFaro.firstShuffle(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
+
+       // System.out.println("\n" + "First shuffle results: " + outFaro.getOneShuffle());
+
         outFaro.setTwoShuffles(outFaro.secondShuffle(outFaro.getOneShuffle()));
 
 
@@ -49,18 +51,18 @@ public class Main {
                     secondHalfSuites, secondHalfValues).indexOf(cardToTrack) + 1;
 
         }
-        System.out.println("After one shuffle, your card is at number " + cardAfterOneShuffle);
+        System.out.println("\n" + "After one shuffle, your card is at number " + cardAfterOneShuffle);
 
         int cardAfterTwoShuffles = 0;
 
-        System.out.println("Second shuffle results: " + outFaro.getTwoShuffles());
+        // System.out.println("\n" + "Second shuffle results: " + outFaro.getTwoShuffles());
 
         if (outFaro.getTwoShuffles().contains(cardToTrack)) {
             cardAfterTwoShuffles += outFaro.getTwoShuffles().indexOf(cardToTrack) + 1;
 
         }
 
-        System.out.println("After two shuffles, your card is at number " + cardAfterTwoShuffles);
+        System.out.println("\n" + "After two shuffles, your card is at number " + cardAfterTwoShuffles);
 
 
     }

@@ -67,7 +67,7 @@ public class OutFaro {
             first26SecondShuffle.add(firstShuffleResults.get(i));
         }
 
-        for(int j = 27; j < firstShuffleResults.size(); j++) {
+        for(int j = 26; j < firstShuffleResults.size(); j++) {
             last26SecondShuffle.add(firstShuffleResults.get(j));
         }
 
