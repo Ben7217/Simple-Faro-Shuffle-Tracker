@@ -1,33 +1,24 @@
 package Tracker;
-
 import java.util.ArrayList;
+
+/**
+ *  This is the OutFaro class where the shuffle takes place.
+ *  This is done recursively, from new deck order. In this case,
+ *  it is shuffling from an American style order, that the United
+ *  States Playing Card Company Uses.
+ */
 
 public class OutFaro {
     private ArrayList<String> shuffleResults;
-    private ArrayList<String> oneShuffles;
-    private ArrayList<String> twoShuffles;
-    private ArrayList<String> threeShuffles;
-    private ArrayList<String> fourShuffles;
-    private ArrayList<String> fiveShuffles;
-    private ArrayList<String> sixShuffles;
-    private ArrayList<String> sevenShuffles;
-    private ArrayList<String> eightShuffles;
-    int shuffleCounter;
-    NewDeckOrder americanOrder;
+    private int shuffleCounter;
 
 
     public ArrayList<String> getOneShuffle() {
         return shuffleResults;
     }
 
-    public void setOneShuffle(ArrayList<String> oneShuffle) {
-        this.shuffleResults = oneShuffle;
-    }
+    public ArrayList<String> outFaro(ArrayList<String> newDeckOrder, int numberOfFaros) {
 
-    public ArrayList<String> firstShuffle(ArrayList<String> newDeckOrder, int numberOfFaros) {
-
-
-        // first out faro Shuffle
         shuffleResults = new ArrayList<>();
         ArrayList<String> temp = new ArrayList<>();
         while (shuffleCounter != numberOfFaros) {
@@ -44,43 +35,12 @@ public class OutFaro {
             if (shuffleCounter == numberOfFaros) {
                 shuffleResults = temp;
             } else {
-                firstShuffle(temp, numberOfFaros);
+                outFaro(temp, numberOfFaros);
             }
 
         }
-
         return shuffleResults;
     }
-
-    public ArrayList<String> getTwoShuffles() {
-        return twoShuffles;
-    }
-
-    public void setTwoShuffles(ArrayList<String> twoShuffles) {
-        this.twoShuffles = twoShuffles;
-    }
-
-//    public ArrayList<String> secondShuffle(ArrayList<String> firstShuffleResults) {
-//
-//        firstShuffleResults = oneShuffle;
-//
-//        // Second Shuffle
-//        twoShuffles = new ArrayList<>();
-//
-//        for (int i = 0; i < firstShuffleResults.size() - 26; i++) {
-//            for (int j = 26; j < firstShuffleResults.size(); j++) {
-//                twoShuffles.add(firstShuffleResults.get(i));
-//                twoShuffles.add(firstShuffleResults.get(j));
-//                i++;
-//
-//            }
-//        }
-//
-//        return twoShuffles;
-//
-//    }
-//
-
 
     @Override
     public String toString() {

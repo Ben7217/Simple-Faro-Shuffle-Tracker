@@ -1,7 +1,10 @@
 package Tracker;
-
 import java.util.ArrayList;
-import java.util.List;
+
+/**
+ * This class sets up a deck in brand new, unshuffled order.
+ * This could be modified for different deck orders if needed.
+ */
 
 public class NewDeckOrder {
 

@@ -3,12 +3,21 @@ import Tracker.OutFaro;
 
 import java.util.Scanner;
 
+/**
+ * Welcome to the client code for the Faro Tracker. This application tracks
+ * a chosen playing card amongst a chosen amount of "Out-Faro" shuffles. An out-faro is
+ * a perfect weave of 52 playing cards, such that the top and bottom cards do not change.
+ * After 8 perfect out-faros the deck will return to new deck order.
+ */
+
 public class Main {
 
 
     public static void main(String[] args) {
+        int cardAfterOneShuffle = 0;
 
         Scanner input = new Scanner(System.in);
+
         // Bicycle new deck order
         System.out.println("Current deck order:");
         NewDeckOrder newDeckOrder = new NewDeckOrder();
@@ -30,40 +39,19 @@ public class Main {
         }
         System.out.println("\n" + cardToTrack + " starting position is " + cardsPosition + ".");
 
-//        System.out.println("\n" + "Performing one out faro.");
-
-
-
         OutFaro outFaro = new OutFaro();
 
-        outFaro.firstShuffle(newDeckOrder.getBicycleDeckOrder(), numberOfFaros);
+        outFaro.outFaro(newDeckOrder.getBicycleDeckOrder(), numberOfFaros);
 
         System.out.println("\n" + "After " + numberOfFaros + " shuffles the deck order is: " + outFaro.getOneShuffle());
 
 
-
-
-        int cardAfterOneShuffle = 0;
         if (outFaro.getOneShuffle().contains(cardToTrack)) {
             cardAfterOneShuffle += outFaro.getOneShuffle().indexOf(cardToTrack) + 1;
 
         }
+
         System.out.println("\n" + "After " + numberOfFaros + " shuffles your card is at number " + cardAfterOneShuffle);
-
-
-
-
-//        outFaro.setTwoShuffles(outFaro.secondShuffle(outFaro.getOneShuffle()));
-//        int cardAfterTwoShuffles = 0;
-//
-//         System.out.println("\n" + "Second shuffle results: " + outFaro.getTwoShuffles());
-//
-//        if (outFaro.getTwoShuffles().contains(cardToTrack)) {
-//            cardAfterTwoShuffles += outFaro.getTwoShuffles().indexOf(cardToTrack) + 1;
-//
-//        }
-//
-//        System.out.println("\n" + "After two shuffles, your card is at number " + cardAfterTwoShuffles);
 
 
     }
