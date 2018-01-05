@@ -1,7 +1,6 @@
 import Tracker.NewDeckOrder;
 import Tracker.OutFaro;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -9,60 +8,62 @@ public class Main {
 
     public static void main(String[] args) {
 
-        NewDeckOrder deckOrder;
+        Scanner input = new Scanner(System.in);
         // Bicycle new deck order
         System.out.println("Current deck order:");
         NewDeckOrder newDeckOrder = new NewDeckOrder();
-        System.out.println(newDeckOrder.toString());
+        newDeckOrder.setBicycleDeckOrder(newDeckOrder.americanNewDeckOrder());
+        System.out.println(newDeckOrder.getBicycleDeckOrder().toString());
 
-        // One out faro
+        // User input
         System.out.println("\nPlease enter the card you wish to track: ");
-        Scanner input = new Scanner(System.in);
         String cardToTrack = input.nextLine();
 
-        deckOrder = new NewDeckOrder();
+        System.out.println("\nHow many out Faro's would you like to shuffle?");
+        int numberOfFaros = input.nextInt();
+
 
         int cardsPosition = 0;
-        ArrayList<String> temp = deckOrder.getList();
-        if (temp.contains(cardToTrack)) {
-            cardsPosition += temp.indexOf(cardToTrack) + 1;
+
+        if (newDeckOrder.americanNewDeckOrder().contains(cardToTrack)) {
+            cardsPosition += newDeckOrder.americanNewDeckOrder().indexOf(cardToTrack) + 1;
         }
         System.out.println("\n" + cardToTrack + " starting position is " + cardsPosition + ".");
-        System.out.println("\n" + "Performing one out faro.");
+
+//        System.out.println("\n" + "Performing one out faro.");
+
+
 
         OutFaro outFaro = new OutFaro();
 
-        String[] firstHalfSuites = new String[]{"Hearts", "Clubs"};
-        String[] firstHalfValues = new String[]{"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+        outFaro.firstShuffle(newDeckOrder.getBicycleDeckOrder(), numberOfFaros);
 
-        String[] secondHalfSuites = new String[]{"Diamonds", "Spades"};
-        String[] secondHalfValues = new String[]{"King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace"};
+        System.out.println("\n" + "After " + numberOfFaros + " shuffles the deck order is: " + outFaro.getOneShuffle());
 
-        outFaro.setOneShuffle(outFaro.firstShuffle(firstHalfSuites, firstHalfValues, secondHalfSuites, secondHalfValues));
 
-       // System.out.println("\n" + "First shuffle results: " + outFaro.getOneShuffle());
-
-        outFaro.setTwoShuffles(outFaro.secondShuffle(outFaro.getOneShuffle()));
 
 
         int cardAfterOneShuffle = 0;
         if (outFaro.getOneShuffle().contains(cardToTrack)) {
-            cardAfterOneShuffle += outFaro.firstShuffle(firstHalfSuites, firstHalfValues,
-                    secondHalfSuites, secondHalfValues).indexOf(cardToTrack) + 1;
+            cardAfterOneShuffle += outFaro.getOneShuffle().indexOf(cardToTrack) + 1;
 
         }
-        System.out.println("\n" + "After one shuffle, your card is at number " + cardAfterOneShuffle);
+        System.out.println("\n" + "After " + numberOfFaros + " shuffles your card is at number " + cardAfterOneShuffle);
 
-        int cardAfterTwoShuffles = 0;
 
-        // System.out.println("\n" + "Second shuffle results: " + outFaro.getTwoShuffles());
 
-        if (outFaro.getTwoShuffles().contains(cardToTrack)) {
-            cardAfterTwoShuffles += outFaro.getTwoShuffles().indexOf(cardToTrack) + 1;
 
-        }
-
-        System.out.println("\n" + "After two shuffles, your card is at number " + cardAfterTwoShuffles);
+//        outFaro.setTwoShuffles(outFaro.secondShuffle(outFaro.getOneShuffle()));
+//        int cardAfterTwoShuffles = 0;
+//
+//         System.out.println("\n" + "Second shuffle results: " + outFaro.getTwoShuffles());
+//
+//        if (outFaro.getTwoShuffles().contains(cardToTrack)) {
+//            cardAfterTwoShuffles += outFaro.getTwoShuffles().indexOf(cardToTrack) + 1;
+//
+//        }
+//
+//        System.out.println("\n" + "After two shuffles, your card is at number " + cardAfterTwoShuffles);
 
 
     }

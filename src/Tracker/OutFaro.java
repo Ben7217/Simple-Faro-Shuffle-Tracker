@@ -1,53 +1,55 @@
 package Tracker;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class OutFaro {
-    private ArrayList<String> oneShuffle;
+    private ArrayList<String> shuffleResults;
+    private ArrayList<String> oneShuffles;
     private ArrayList<String> twoShuffles;
+    private ArrayList<String> threeShuffles;
+    private ArrayList<String> fourShuffles;
+    private ArrayList<String> fiveShuffles;
+    private ArrayList<String> sixShuffles;
+    private ArrayList<String> sevenShuffles;
+    private ArrayList<String> eightShuffles;
+    int shuffleCounter;
+    NewDeckOrder americanOrder;
 
 
     public ArrayList<String> getOneShuffle() {
-        return oneShuffle;
+        return shuffleResults;
     }
 
     public void setOneShuffle(ArrayList<String> oneShuffle) {
-        this.oneShuffle = oneShuffle;
+        this.shuffleResults = oneShuffle;
     }
 
-    public ArrayList<String> firstShuffle(String[] suitesFirstHalf, String[] valuesFirstHalf,
-                                          String[] suitesSecondHalf, String[] valuesSecondHalf) {
+    public ArrayList<String> firstShuffle(ArrayList<String> newDeckOrder, int numberOfFaros) {
 
-        ArrayList<String> first26 = new ArrayList<>();
 
-        for (String deckFirstSuites : suitesFirstHalf) {
-            for (String deckFirstValues : valuesFirstHalf) {
-                first26.add(deckFirstValues + " of " + deckFirstSuites);
+        // first out faro Shuffle
+        shuffleResults = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
+        while (shuffleCounter != numberOfFaros) {
+
+            for (int i = 0; i < newDeckOrder.size() - 26; i++) {
+                for (int j = 26; j < newDeckOrder.size(); j++) {
+                    temp.add(newDeckOrder.get(i));
+                    temp.add(newDeckOrder.get(j));
+                    i++;
+                }
             }
+
+            shuffleCounter++;
+            if (shuffleCounter == numberOfFaros) {
+                shuffleResults = temp;
+            } else {
+                firstShuffle(temp, numberOfFaros);
+            }
+
         }
 
-        ArrayList<String> last26 = new ArrayList<>();
-
-        for (String deckSecondSuites : suitesSecondHalf) {
-            for (String deckSecondValues : valuesSecondHalf) {
-                last26.add(deckSecondValues + " of " + deckSecondSuites);
-            }
-        }
-
-        // One Shuffle
-        oneShuffle = new ArrayList<>();
-
-        for (int i = 0; i < first26.size(); i++) {
-            for (int j = 0; j < last26.size(); j++) {
-                oneShuffle.add(first26.get(i));
-                oneShuffle.add(last26.get(j));
-                i++;
-
-            }
-        }
-
-        return oneShuffle;
+        return shuffleResults;
     }
 
     public ArrayList<String> getTwoShuffles() {
@@ -58,39 +60,32 @@ public class OutFaro {
         this.twoShuffles = twoShuffles;
     }
 
-    public ArrayList<String> secondShuffle(ArrayList<String> firstShuffleResults) {
+//    public ArrayList<String> secondShuffle(ArrayList<String> firstShuffleResults) {
+//
+//        firstShuffleResults = oneShuffle;
+//
+//        // Second Shuffle
+//        twoShuffles = new ArrayList<>();
+//
+//        for (int i = 0; i < firstShuffleResults.size() - 26; i++) {
+//            for (int j = 26; j < firstShuffleResults.size(); j++) {
+//                twoShuffles.add(firstShuffleResults.get(i));
+//                twoShuffles.add(firstShuffleResults.get(j));
+//                i++;
+//
+//            }
+//        }
+//
+//        return twoShuffles;
+//
+//    }
+//
 
-        ArrayList<String> first26SecondShuffle = new ArrayList<>();
-        ArrayList<String> last26SecondShuffle = new ArrayList<>();
-
-        for(int i = 0; i < firstShuffleResults.size() - 26; i++) {
-            first26SecondShuffle.add(firstShuffleResults.get(i));
-        }
-
-        for(int j = 26; j < firstShuffleResults.size(); j++) {
-            last26SecondShuffle.add(firstShuffleResults.get(j));
-        }
-
-        // Second Shuffle
-        twoShuffles = new ArrayList<>();
-
-        for (int i = 0; i < first26SecondShuffle.size() - 1; i++) {
-            for (int j = 0; j < last26SecondShuffle.size() - 1; j++) {
-                twoShuffles.add(first26SecondShuffle.get(i));
-                twoShuffles.add(last26SecondShuffle.get(j));
-                i++;
-
-            }
-        }
-
-        return twoShuffles;
-
-    }
 
     @Override
     public String toString() {
-        return "firstShuffle{" +
-                "oneShuffle=" + oneShuffle +
+        return "OutFaro{" +
+                "oneShuffle=" + shuffleResults +
                 '}';
     }
 }
